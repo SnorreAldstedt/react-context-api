@@ -10,12 +10,16 @@ const ThemeContext = createContext();
 
 function App() {
     const [tweets, setTweets] = useState(defaultTweets)
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState(() => {
+        const initialTheme = localStorage.getItem("theme");
+        return initialTheme ? initialTheme : "light";
+    } );
 
     useEffect(() => {
         theme === 'light'
           ? document.body.style.backgroundColor = 'white'
-          : document.body.style.backgroundColor = 'black'
+          : document.body.style.backgroundColor = 'black';
+          localStorage.setItem("theme", theme)
     }, [theme])
 
     return (
@@ -33,5 +37,4 @@ function App() {
     )
 }
 
-export {TwitterContext, ThemeContext}
-export { App };
+export {TwitterContext, ThemeContext, App};

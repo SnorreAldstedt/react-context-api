@@ -15,6 +15,7 @@ export default function Header() {
 
     const handleButtonClick = () => {
       console.log("CLICK!");
+      localStorage.clear();
     }
 
     return (
